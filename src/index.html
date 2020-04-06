@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="hero">
+            <h1>Set Your Goals For This Quarantine Period</h1>
+        </div>
+        <div class="goalsCategories">
+            <div class="categoryIcon">
+                <h3 class="iconHeading">cooking</h3>
+                <img class="iconImg" src="img/chef.png" alt="">
+
+            </div>
+            <div class="categoryIcon">
+                <h3 class="iconHeading">health</h3>
+                <img class="iconImg" src="img/yoga.png" alt="">
+            </div>
+            <div class="categoryIcon">
+                <h3 class="iconHeading">technical</h3>
+                <img class="iconImg" src="img/student.png" alt="">
+            </div>
+            <div class="categoryIcon">
+                <h3 class="iconHeading">language</h3>
+                <img class="iconImg" src="img/extensible-markup-language (1).png" alt="">
+            </div>
+        </div>
+        <div class="goalsList">
+            <div>
+                <h1 id="goalCategoryTitle">cooking</h1>
+                <form id="goalForm">
+                    <table >
+                        <tr>
+                            <td>
+                                <label for="title">Title:</label>
+                                <label id="hiddenId" style="display: none;"></label>
+                            </td>
+                            <td>
+                                <input id="title" type="text" required>
+                                <label  class="errorLabels" id="titleError"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="status">Status:</label>
+                            </td>
+                            <td>
+                                <select id="status">
+                                    <option value="new">new</option>
+                                    <option value="inProgress">in progress</option>
+                                    <option value="completed">completed</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="deadline">Complete By:</label>
+                            </td>
+                            <td>
+                                <input id="deadline" type="date" required>
+                                <label class="errorLabels" id="deadlineError"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="hrsPerWeek">Hours Per Week:</label>
+                            </td>
+                            <td>
+                                <input id="hrsPerWeek" type="number" required>
+                                <label class="errorLabels" id="hrsPerWeekError"></label>
+                            </td>
+                        </tr>
+                        <tr id="tutorials">
+                            <td>
+                                <label for="tutorial">Tutorial Link</label>
+                            </td>
+                            <td>
+                                <input id="tutorial" type="text" required>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td>
+                                <label class="cookingExclusive" for="recipe" >Recipe</label>
+                            </td>
+                            <td>
+                                <textarea class="cookingExclusive" id="recipe" cols="30" rows="10" required></textarea>
+                                
+                            </td>
+                        </tr>
+                        <tr class="healthExclusive">
+                            <td>
+                                <label cookingExclusiveclass="healthExclusive" for="currentWeight">Current Weight:</label>
+                            </td>
+                            <td>
+                                <input class="healthExclusive"  id="currentWeight" type="text" required>
+                            </td>
+                        </tr>
+                        <tr class="healthExclusive" >
+                            <td>
+                                <label class="healthExclusive"  for="goalWeight">Goal Weight:</label>
+                            </td>
+                            <td>
+                                <input class="healthExclusive" id="goalWeight" type="text" required>
+                            </td>
+                        </tr>
+                        <tr class="technicalExclusive languageExclusive" >
+                            <td>
+                                <label class="technicalExclusive languageExclusive" for="notes">Notes:</label>
+                            </td>
+                            <td>
+                                <textarea class="technicalExclusive languageExclusive" id="notes" cols="30" rows="10" required></textarea>
+                                
+                            </td>
+                        </tr>
+                        <tr class="technicalExclusive" >
+                            <td>
+                                <label class="technicalExclusive" for="projects">Project Link:</label>
+                            </td>
+                            <td>
+                                <input class="technicalExclusive" id="projects" type="text" required>\
+                            </td>
+                        </tr>
+                        <tr class="languageExclusive" >
+                            <td>
+                                <label class="languageExclusive" for="words">List of words</label>
+                            </td>
+                            <td>
+                                <input class="languageExclusive" id="words" type="text" required>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            
+            <br/>
+            <button id="addGoal" onclick="addGoalToList()">Add Goal</button>
+            <button id="updateGoal" onclick="updateGoalList()">Update Goal</button>
+            </div>
+            <div class="tasks">
+                <table id="displayGoalList" style="border: solid 1px F6CD20;">
+                    <tr style="background-color: #F6CD20; color:black">
+                        <th id="id"> SNo </th>
+                        <th id="taskTitle"> Title </th>
+                        <th id="taskDeadline"> Deadline</th>
+                        <th id="taskWeekHrs">Hrs/Week</th>
+                        <th id="tasktutorial">Tutorial</th>
+                        <th id="taskRecipe" class="cookingExclusive">Recipe</th>
+                        <th id="taskcurrentWeight" class="healthExclusive">Current kgs</th>
+                        <th id="taskgoalWeight" class="healthExclusive">Goal kgs</th>
+                        <th id="taskprojects" class="technicalExclusive">Projects</th>
+                        <th id="tasknotes" class="technicalExclusive languageExclusive">Notes</th>
+                        <th id="taskwords" class="languageExclusive" >Words</th>
+                        <th id="taskAction">Status</th>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div>
+            <ul class="goalAppendList">
+
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
